@@ -1,0 +1,12 @@
+NOTES:
+
+Incase you want to make a remote event within studio:
+____.model.json
+
+and within the json you go
+
+{
+    "ClassName": "RemoteEvent"
+}
+
+-note i have yet to learn the configs to do other places outside the 3 mentioend in Leaderstats.server.luau
