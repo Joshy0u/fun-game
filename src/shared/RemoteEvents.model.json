@@ -1,0 +1,17 @@
+{
+    "ClassName": "Folder", 
+    "Children":[
+        {
+            "ClassName": "RemoteEvent",
+            "Name": "GiveCurrency"
+        },
+        {
+            "ClassName": "RemoteEvent",
+            "Name": "GreetPlayer"
+        },
+        {
+            "ClassName": "RemoteEvent",
+            "Name": "GiveAnnouncement"
+        }
+    ]
+}
