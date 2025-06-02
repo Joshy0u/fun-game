@@ -1,30 +1,51 @@
-local greetPlayer = game.ReplicatedStorage.Shared.RemoteEvents.GreetPlayer
-local giveAnnouncement = game.ReplicatedStorage.Shared.RemoteEvents.GiveAnnouncement
-
 game.Players.PlayerAdded:Connect(function(plr)
 	local leaderstats = Instance.new("Folder", plr)
 	leaderstats.Name = "leaderstats"
 
 	local coins = Instance.new("IntValue", leaderstats)
 	coins.Name = "Coins"
-	coins.Value = 50
-
-	greetPlayer:FireClient(plr, "Hello " .. plr.Name)
+	coins.Value = 25
 end) -- this is good
 
-local giveCurrency = game.ReplicatedStorage.Shared.RemoteEvents.GiveCurrency
+local DoubloonsEvent = game.ReplicatedStorage.Shared.RemoteEvents.GiveDoubloons
 
-giveCurrency.OnServerEvent:Connect(function(player, coinsAmount) -- give the player that fired the event 50 coins
-	local leaderstats = player.leaderstats
+DoubloonsEvent.OnServerEvent:Connect(function(plr)
+	local leaderstats = plr.leaderstats
 	local coins = leaderstats.Coins
 
-	coins.Value += coinsAmount
+	coins.Value += 10
 end)
 
-task.wait(20)
-giveAnnouncement:FireAllClients()
+local blockPrices = {
+	red = 50,
+	blue = 75,
+	green = 25,
+}
 
---NOTE I DO NOT KNOW HOW TO MAKE SCRIPTS IN PLACES OUTSIDE serverScriptService, StarterPlayerScripts,
--- and ReplicatedStorage. I am not sure if this is possible.
---note the remote event indirectly will pass the player to the function, so the
--- "on server event" function must receive the player as a parameter.
+local BuyObjectRemote = game.ReplicatedStorage.Shared.RemoteFunctions.BuyObject
+--onServerEvent(plr, arguments, etc)-very similar
+BuyObjectRemote.OnServerInvoke = function(plr, color)
+	local purchaseSuccessful = false
+
+	--NOTE: if this has a runtime error, then use findFirstChild("Leaderstats")
+	--same goes for ("Coins") below
+
+	local leaderstats = plr.leaderstats
+	--if not leaderstats then return false end
+
+	local coins = leaderstats.Coins
+	--if not coins then return false end
+
+	local price = blockPrices[color]
+	if not price then
+		return false
+	end
+
+	if coins.Value >= price then
+		coins.Value -= price
+		purchaseSuccessful = true
+	end
+	return purchaseSuccessful
+end -- no end parenthesis
+
+-- remote functions code successfully completed, however got to implement the tooling bits correctly, perhaps tmrw

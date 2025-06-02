@@ -10,3 +10,8 @@ and within the json you go
 }
 
 -note i have yet to learn the configs to do other places outside the 3 mentioend in Leaderstats.server.luau
+
+--NOTE I DO NOT KNOW HOW TO MAKE SCRIPTS IN PLACES OUTSIDE serverScriptService, StarterPlayerScripts,
+-- and ReplicatedStorage. I am not sure if this is possible.
+--note the remote event indirectly will pass the player to the function, so the
+-- "on server event" function must receive the player as a parameter.
