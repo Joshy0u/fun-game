@@ -43,6 +43,12 @@ BuyObjectRemote.OnServerInvoke = function(plr, color)
 
 	if coins.Value >= price then
 		coins.Value -= price
+
+		local blockTool = game.ServerStorage:FindFirstChild(color)
+		if blockTool then
+			local clonedBlockTool = blockTool:Clone()
+			clonedBlockTool.Parent = plr.Backpack
+		end
 		purchaseSuccessful = true
 	end
 	return purchaseSuccessful
