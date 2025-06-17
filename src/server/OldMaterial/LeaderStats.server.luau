@@ -6,3 +6,4 @@ game.Players.PlayerAdded:Connect(function(plr)
 	coins.Name = "Coins"
 	coins.Value = 25
 end) -- this is good
+--note path directory needs to be changed inorder for these to work

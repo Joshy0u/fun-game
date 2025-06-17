@@ -12,3 +12,4 @@ for i = 1, 10 do
 		randomColor
 	)
 end
+--note path directory needs to be changed inorder for these to work

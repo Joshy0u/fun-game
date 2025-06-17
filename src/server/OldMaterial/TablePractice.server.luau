@@ -6,3 +6,4 @@ local partTable = tableModule.getPartTable()
 for i = 1, #partTable do
 	print("Part Name: " .. partTable[i].Name)
 end
+--note path directory needs to be changed inorder for these to work
