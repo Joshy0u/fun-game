@@ -1,20 +1,17 @@
-local UserInput = game:GetService("UserInputService")
-local player = game.Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 local KatanaEvent = ReplicatedStorage.Shared.RemoteEvents:WaitForChild("KatanaDetected")
 
 player.CharacterAdded:Connect(function(character)
-	local katana = character:WaitForChild("Katana")
-	katana.Equipped:Connect(function()
-		print("Katana equipped")
-		UserInput.InputBegan:Connect(function(input, gameProcessedEvent)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 and not gameProcessedEvent then
-				print("Katana slash action triggered")
+	character.ChildAdded:Connect(function(child)
+		if child.Name == "Katana" and child:IsA("Tool") and not child:GetAttribute("ClientConnected") then
+			child:SetAttribute("ClientConnected", true)
+
+			child.Activated:Connect(function()
+				print("Katana activated for player: " .. player.Name)
 				KatanaEvent:FireServer()
-				-- Here you can implement the logic for the slash hitbox
-				-- For example, you could create a hitbox and check for collisions with other players or objects
-				-- This is where you would handle the actual slash effect
-			end
-		end)
+			end)
+		end
 	end)
 end)
