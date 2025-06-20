@@ -19,7 +19,7 @@ local function tweenHitbox(hitbox)
 	hitbox.PrimaryPart.Anchored = true
 
 	local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear)
-	local offset = CFrame.new(0, 0, -20) -- Move the hitbox back by 5 studs
+	local offset = CFrame.new(0, 0, -50) -- Move the hitbox back by 5 studs
 	local goal = {
 		CFrame = hitbox.PrimaryPart.CFrame * offset,
 	}
@@ -45,7 +45,7 @@ SlashHitbox.fireHitbox = function(player)
 		return
 	end
 
-	local forwardOffset = 5
+	local forwardOffset = 6
 	local spawnPosition = rootPart.Position + (rootPart.CFrame.LookVector * forwardOffset)
 
 	if not slashHitbox.PrimaryPart then

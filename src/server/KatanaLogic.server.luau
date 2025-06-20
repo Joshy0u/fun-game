@@ -21,7 +21,7 @@ game.Players.PlayerAdded:Connect(function(player)
 		local handle = katana:WaitForChild("Handle")
 		local blade = katana:WaitForChild("KatanaMesh")
 		katana.Parent = player.Backpack
-
+		-- note this is here so we dont develop multiple connections with our remote event server and client side.
 		weldingModule.weldParts(handle, blade)
 	end)
 end)
