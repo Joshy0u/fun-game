@@ -36,4 +36,4 @@ player.CharacterAdded:Connect(function(character)
 		end
 	end)
 end)
---next step, change this to E key instead of left click.
+--next step, change this to E key instead of left click: DONE!
